@@ -15,45 +15,12 @@
     </div> 
 
     <div class="container main-part">
-      
       {% if contacts %}
-        {% for contact in contacts %}
-        <!-- Card for details -->
-        <div class="card my-2 mx-2 boy-card">
-          
-          {% if contact.image %}
-            <img src="{{ contact.image.url }}" class="img-fluid"/>   
-          {% else %}
-            {% if contact.gender == 'male' %}
-              <img src="{% static './images/boy.png' %}" class="img-fluid" />
-            {% else %}
-              <img src="{% static './images/girl.png' %}" class="img-fluid" />
-            {% endif %}
-          {% endif %}
-            
-
-          <div class="card-header">
-            <a href="detail.html" class="text-white header-link"
-              ><i class="fas fa-mars mr-2"></i> {{ contact.name }}</a
-            >
-          </div>
-          <div class="card-body pb-0">
-            <p>
-              <i class="fas fa-at mr-2"></i>
-              <a href="mailto:{{contact.email}}">{{ contact.email }}</a>  
-            </p>
-            <p>
-              <i class="fas fa-phone mr-2"></i>
-              <a href="tel:{{ contact.phone}}">{{ contact.phone}}</a>
-            </p>
-            <p><i class="fas fa-info-circle mr-2"></i> {{ contact.info }}</p>
-          </div>
-        </div>
-        <!-- Card for details ends -->
-
-        {% endfor %}
+          {% for contact in contacts %}
+              {% include 'partials/_card.html' %} 
+          {% endfor %}
       {% else %}
-        <p>No Contacts</p>
+          <p>No Contacts</p>
       {% endif %}
     </div>
     <!-- Main Section ends-->
