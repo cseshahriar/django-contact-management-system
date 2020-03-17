@@ -1,0 +1,8 @@
+create venv:
+    python -m venv env 
+
+activate venv:
+    source ./env/Scripts/activate 
+
+check env: 
+pip freeze 
