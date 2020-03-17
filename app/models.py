@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import datetime
 
 # contact model 
 class Contact(models.Model):
@@ -11,7 +12,7 @@ class Contact(models.Model):
         ('female', 'Female')
     ))
     image = models.ImageField(upload_to='images/', blank=True)
-    created_at = models.DateField(auto_now_add=True)  
+    created_at = models.DateTimeField(default=datetime.now)    
 
     def __str__(self):
         return self.name  

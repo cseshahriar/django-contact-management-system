@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from .models import Contact
 
 # return home template 
 def home(request):
-    return render(request, 'index.html', {}) 
+    context = {
+        'contacts': Contact.objects.all() 
+    }
+    return render(request, 'index.html', context) 
