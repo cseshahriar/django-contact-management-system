@@ -20,3 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls'))
 ]
+
+# Customizing admin texts 
+admin.site.site_header = 'Contact Manager'
+admin.site.index_title = 'Welcome to The Contact Manager' 
+admin.site.site_title = "Contact Manager Admin Panel" 

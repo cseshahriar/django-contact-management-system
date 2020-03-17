@@ -14,5 +14,5 @@ class Contact(models.Model):
     created_at = models.DateField(auto_now_add=True)  
 
     def __str__(self):
-        return self.name 
+        return self.name  
     
