@@ -6,3 +6,10 @@ activate venv:
 
 check env: 
 pip freeze 
+
+model view template :
+                            ---- Model 
+                            -
+user -> url -> view -> ----
+                            -
+                            ---- Template  
