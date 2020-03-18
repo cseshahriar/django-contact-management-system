@@ -21,4 +21,4 @@ If a field has blank=True, form validation will allow entry of an empty value.
 If a field has blank=False, the field will be required.
 
 # image 
-pip install Pillow
+pip install Pillow 
