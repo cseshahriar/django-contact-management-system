@@ -1,15 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Contact
+from django.views.generic import ListView, DetailView
+from app.models import Contact
 
-# return home template 
-def home(request):
-    context = {
-        'contacts': Contact.objects.all() 
-    }
-    return render(request, 'index.html', context) 
+# class base view 
+class ContactList(ListView):
+    template_name = 'index.html'
+    model = Contact 
+    context_object_name = 'contacts'  
 
-def detail(request, id): 
-    context = {
-        'contact' : get_object_or_404(Contact, pk=id)
-    }
-    return render(request, 'detail.html', context)  
+class ContactDetailView(DetailView):
+    template_name = 'detail.html'
+    model = Contact 
+    context_object_name = 'contact'
