@@ -21,15 +21,11 @@
 
     <!-- Navbar -->
     <nav>
-      <a class="logo" href="/index.html">
+      <a class="logo" href="{% url 'home' %}">
         <i class="fas fa-user-circle"></i>&nbsp;Contacts
       </a>
-      <form class="form-inline my-2" action="search.html">
-        <input
-          class="form-control"
-          type="text"
-          placeholder="Find contacts..."
-        />
+      <form class="form-inline my-2" action="{% url 'search' %}" method="GET">  
+        <input class="form-control" type="text" name="search_term" placeholder="Find contacts..."> 
         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
       </form>
     </nav>
