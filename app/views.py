@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect   
 from django.views.generic import ListView, DetailView
 from app.models import Contact
-
+from django.db.models import Q 
 
 # class base view 
 class ContactList(ListView):
@@ -18,7 +18,12 @@ class ContactDetailView(DetailView):
 def search(request):
     if request.GET:
         search_term = request.GET['search_term']
-        search_results = Contact.objects.filter(name__icontains=search_term)  
+        search_results = Contact.objects.filter(
+            Q(name__icontains=search_term) or 
+            Q(email__icontains=search_term) or 
+            Q(phone__icontains=search_term) or
+            Q(info__iexcept=search_term) 
+        )  
         context = {  
             'search_term': search_term,
             'contacts': search_results 
