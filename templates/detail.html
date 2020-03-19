@@ -6,7 +6,7 @@
   Contact Details
 {% endblock title %}
  
- 
+
 {% block content %}
     <!-- Main Section -->
     <div class="container">
@@ -25,8 +25,8 @@
       <h5 class="text-center">Date Added: &nbsp; {{ contact.created_at }}</h5>
       {% endif %}
       <p class="text-center">
-        <a href="" class="btn btn-info">Edit</a>&nbsp; &nbsp; &nbsp; 
-        <a href="" class="btn btn-danger">Delete</a>
+        <a href="{% url 'update' contact.id %}" class="btn btn-info">Edit</a>&nbsp; &nbsp; &nbsp; 
+        <a href="" class="btn btn-danger">Delete</a> 
       </p>
     </div>
     <!-- Main Section ends-->

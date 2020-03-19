@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from app.models import Contact
 from django.db.models import Q 
-from django.views.generic.edit import CreateView 
+from django.views.generic.edit import CreateView, UpdateView
 
 # class base view 
 class ContactList(ListView):
@@ -38,4 +38,14 @@ class ContactCreateView(CreateView):
     template_name = 'create.html'
     fields = ['name', 'email', 'phone', 'info', 'gender', 'image']
     success_url = '/' # home page url 
+
+class ContactUpdateView(UpdateView):
+    model = Contact 
+    template_name = 'update.html'
+    fields = ['name', 'email', 'phone', 'info', 'gender', 'image']
+    
+    def form_valid(self, form):
+        instance = form.save()
+        return redirect('single', instance.pk)  
+
 
