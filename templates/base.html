@@ -25,6 +25,13 @@
         <i class="fas fa-user-circle"></i>&nbsp;Contacts
       </a>
       <a href="{% url 'create' %}" class="btn btn-default text-white">+ Add Contact</a>
+      
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="btn btn-default text-white">Logout</a>    
+      {% else %}
+        <a href="{% url 'login' %}" class="btn btn-default text-white">Login</a>
+      {% endif %}
+
       <form class="form-inline my-2" action="{% url 'search' %}" method="GET">  
         <input class="form-control search-box" type="search" name="search_term" placeholder="Find contacts..."> 
       </form>
