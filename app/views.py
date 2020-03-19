@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from app.models import Contact
 from django.db.models import Q 
+from django.views.generic.edit import CreateView 
 
 # class base view 
 class ContactList(ListView):
@@ -31,3 +32,10 @@ def search(request):
         return render(request, 'search.html', context)  
     else:
         return redirect('home') # url name 
+
+class ContactCreateView(CreateView):
+    model = Contact 
+    template_name = 'create.html'
+    fields = ['name', 'email', 'phone', 'info', 'gender', 'image']
+    success_url = '/' # home page url 
+

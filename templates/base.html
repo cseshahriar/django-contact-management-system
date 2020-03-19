@@ -24,9 +24,9 @@
       <a class="logo" href="{% url 'home' %}">
         <i class="fas fa-user-circle"></i>&nbsp;Contacts
       </a>
+      <a href="{% url 'create' %}" class="btn btn-default text-white">+ Add Contact</a>
       <form class="form-inline my-2" action="{% url 'search' %}" method="GET">  
-        <input class="form-control" type="text" name="search_term" placeholder="Find contacts..."> 
-        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+        <input class="form-control search-box" type="search" name="search_term" placeholder="Find contacts..."> 
       </form>
     </nav>
     <!-- Navbar ends -->
@@ -36,7 +36,7 @@
     {% endblock content %}
 
     <!-- footer -->
-    <footer class="mt-4 p-2">
+    <footer class="mt-5 p-2">
       <p class="text-center p-1 m-0">&copy; My Contacts 2019</p>
     </footer>
     <!-- footer ends -->
