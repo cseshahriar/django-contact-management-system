@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required # for function base views 
 from django.urls import reverse_lazy
+from django.contrib import messages  
 
 # class base view 
 class ContactList(LoginRequiredMixin, ListView):  
@@ -50,6 +51,7 @@ class ContactCreateView(CreateView):
         instance = form.save(commit=False)
         instance.manager = self.request.user
         instance.save()
+        messages.success(self.request, 'Your contact has been successfully created!')
         return redirect('home')   
 
 
@@ -60,6 +62,7 @@ class ContactUpdateView(UpdateView):
     
     def form_valid(self, form):
         instance = form.save()
+        messages.success(self.request, 'Your contact has been successfully updated!')
         return redirect('single', instance.pk)  
 
 
@@ -68,8 +71,12 @@ class ContactDeleteView(DeleteView):
     template_name = 'delete.html'
     success_url = '/'
 
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Your contact has been succcessfully deleted!')
+        return super().delete(self, request, *args, **kwargs)
 
+        
 class SignUpView(CreateView):
-     form_class = UserCreationForm
-     template_name = 'registration/signup.html'
-     success_url = reverse_lazy('home')  
+    form_class = UserCreationForm
+    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('home')   
