@@ -8,20 +8,24 @@
     
 
 {% block content %}
-    <div class="container">
-        <h2 class="heading font-weight-light text-center">Delete Contact</h2>
-        <hr>
-    </div>
-    <div class="container mb-5">
-        <div class="row">
-            <div class="col-6 offset-3">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="w-100 text-white text-center btn btn-danger">Delete</button>
-                </form>
-            </div>
-        </div> 
-    </div>
+    {% if contact.manager == request.user %} 
+        <div class="container">
+            <h2 class="heading font-weight-light text-center">Delete Contact</h2>
+            <hr>
+        </div>
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="w-100 text-white text-center btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div> 
+        </div>
+    {% else %}
+        access denied! 
+    {% endif %} 
 {% endblock content %}
     

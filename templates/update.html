@@ -8,6 +8,7 @@
     
 
 {% block content %}
+{% if contact.manager == request.user %} 
     <div class="container">
         <h2 class="heading font-weight-light text-center">Edit Contact</h2>
         <hr>
@@ -23,5 +24,9 @@
             </div>
         </div>
     </div>
+{% else %}
+    access denied! 
+{% endif %} 
+
 {% endblock content %}
     
