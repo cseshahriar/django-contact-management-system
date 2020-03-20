@@ -1,0 +1,12 @@
+/* admin panel styles */
+#header, caption {
+    background: #29a7a6 !important; 
+}
+#header h1 {
+    color: #ffffff;
+}
+.breadcrumbs, h2, [type="submit"] {
+    border-top: 1px solid #138d8d !important;
+    background: #29a7a6 !important;
+    color: #ffffff !important;
+}
