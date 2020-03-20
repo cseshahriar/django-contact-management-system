@@ -5,6 +5,7 @@ from .models import Contact
 # customizing admin 
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'phone', 'info', 'gender', 'image', 'created_at') 
+    list_display_links = ('id', 'name')
     list_editable = ('info',) 
     list_per_page = 10 # pagination 
     search_fields = ('name', 'gender', 'email', 'info', 'phone')

@@ -6,12 +6,17 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm  
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required # for function base views 
+from django.urls import reverse_lazy
 
 # class base view 
 class ContactList(LoginRequiredMixin, ListView):  
     template_name = 'index.html'
     model = Contact 
     context_object_name = 'contacts'  
+    # return loggein user contacts
+    def get_queryset(self):
+        contacts = super().get_queryset()
+        return contacts.filter(manager=self.request.user)
 
 class ContactDetailView(DetailView):
     template_name = 'detail.html'
@@ -41,7 +46,11 @@ class ContactCreateView(CreateView):
     model = Contact 
     template_name = 'create.html'
     fields = ['name', 'email', 'phone', 'info', 'gender', 'image']
-    success_url = '/' # home page url 
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.manager = self.request.user
+        instance.save()
+        return redirect('home')   
 
 
 class ContactUpdateView(UpdateView):
@@ -63,4 +72,4 @@ class ContactDeleteView(DeleteView):
 class SignUpView(CreateView):
      form_class = UserCreationForm
      template_name = 'registration/signup.html'
-     success_url = '/'  
+     success_url = reverse_lazy('home')  
