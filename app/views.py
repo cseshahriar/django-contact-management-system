@@ -4,9 +4,11 @@ from app.models import Contact
 from django.db.models import Q 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView  
 from django.contrib.auth.forms import UserCreationForm  
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required # for function base views 
 
 # class base view 
-class ContactList(ListView):
+class ContactList(LoginRequiredMixin, ListView):  
     template_name = 'index.html'
     model = Contact 
     context_object_name = 'contacts'  
@@ -16,7 +18,7 @@ class ContactDetailView(DetailView):
     model = Contact 
     context_object_name = 'contact'
 
-
+@login_required
 def search(request):
     if request.GET:
         search_term = request.GET['search_term']

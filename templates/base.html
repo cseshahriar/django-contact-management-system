@@ -34,7 +34,7 @@
       {% endif %}
 
       <form class="form-inline my-2" action="{% url 'search' %}" method="GET">  
-        <input class="form-control search-box" type="search" name="search_term" placeholder="Find contacts..."> 
+        <input class="form-control search-box" type="search" name="search_term" value="{{ search_term }}" placeholder="Find contacts..."> 
       </form>
     </nav>
     <!-- Navbar ends -->
